@@ -1,0 +1,105 @@
+{% extends 'basic.html' %} 
+{% block title %} Internship details {% endblock title %}
+{% block stylecss %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+{% endblock stylecss %} 
+{% block body %}
+
+<div class="container mt-4 p-2">
+  <div class="row">
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4">
+
+    
+      <h3 class="text-white bg-dark text-center p-3">Please fill out your Details Carefully</h3>
+
+{% for message in messages %}
+
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong>{{message}} </strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+      <div class="card p-2">
+
+
+      <form action="/internshipdetails" method="post">{% csrf_token %}
+        <div class="form-group">
+          <h5>
+            <span><i class="fas fa-user"></i> Full Name</span>
+          </h5>
+          <input type="text" class="form-control mb-3" name="name" required/>
+        </div>
+        <div class="form-group">
+          <h5>
+            <span><i class="fas fa-user"></i>U.S.N</span>
+          </h5>
+          <input type="text" class="form-control mb-3" name="usn" required/>
+        </div>
+        <div class="form-group">
+          <h5>
+            <span><i class="bx bx-envelope"></i> Email</span>
+          </h5>
+          <input type="email" value="{{user.email}}" class="form-control mb-3" name="email" required/>
+        </div>
+
+         <div class="form-group">
+          <h5>
+            <span><i class="far fa-question-circle"></i>Did you Received Offer Letter</span>
+          </h5>
+          <input type="text" class="form-control mb-3" name="offer" placeholder="Yes/No" required/>
+        </div>
+      
+
+      <div class="form-group">
+          <h5>
+            <span><i class="far fa-calendar-check"></i>Start Date</span>
+          </h5>
+          <input type="date" class="form-control mb-3" name="startdate" required/>
+        </div>
+
+      <div class="form-group">
+          <h5>
+            <span><i class="far fa-calendar-check"></i>End Date</span>
+          </h5>
+          <input type="date" class="form-control mb-3" name="enddate" required/>
+        </div>
+
+        <div class="form-group">
+          <h5>
+            <span><i class="far fa-question-circle"></i>Did you want Project and Report</span>
+          </h5>
+          <input type="text" class="form-control mb-3" name="projreport" placeholder="Yes/No" required/>
+        </div>
+
+        <div class="form-group">
+          <h5>
+            <span><i class="far fa-question-circle"></i>College Name </span>
+          </h5>
+          <textarea type="text" class="form-control mb-3" name="cname" required ></textarea>
+        </div>
+       
+
+
+        <div class="d-grid gap-2">
+          <button class="btn btn-dark" type="submit">Submit</button>
+        </div>
+     
+      </div>
+
+      </form>
+    </div>
+
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+{% endblock body %}
